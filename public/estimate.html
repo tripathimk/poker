@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Estimate</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+</head>
+ <script src="/estimate.js"></script> 
+<body>
+
+	<form>
+		<div id="scrum">
+                 Scrum Name : <div id="scrumLabel">...</div>
+            </div>
+            
+            <div id="story">
+                User Story: <div id="storyLabel">...</div>
+            </div>
+                <input id="number" type="text" placeholder="Enter Estimate" />
+		
+		<button id="submit">Submit</button>
+		
+		
+                
+          
+	</form>
+<script>
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+  var scrum = getParameterByName('scrum');
+  var story = getParameterByName('story');
+   
+  var scrumLabel = document.getElementById('scrumLabel');
+  var storyLabel = document.getElementById('storyLabel');
+	    
+	    alert(scrum+story);
+	    
+	   scrumLabel.innerHTML += scrum;
+	    storyLabel.innerHTML += story;
+   
+</script>
+</body>
+
+</html>
