@@ -3,28 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Estimate</title>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
 </head>
- <script src="/estimate.js"></script> 
+<script src="/estimate.js"></script>
 <body>
 
 	<form>
 		<div id="scrum">
-                 Scrum Name : <div id="scrumLabel">...</div>
-            </div>
-            
-            <div id="story">
-                User Story: <div id="storyLabel">...</div>
-            </div>
-                <input id="number" type="text" placeholder="Enter Estimate" />
-		
-		<button id="submit">Submit</button>
-		
-		
-                
-          
+			Scrum Name :
+			<div id="scrumLabel">...</div>
+		</div>
+		<div id="story">
+			User Story:
+			<div id="storyLabel">...</div>
+		</div>
+		<input id="number" type="text" placeholder="Enter Estimate" />
+		<button id="subEstimate">Submit</button>
 	</form>
-<script>
+	<script>
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -44,7 +41,18 @@ function getParameterByName(name, url) {
 	    
 	   scrumLabel.innerHTML += scrum;
 	    storyLabel.innerHTML += story;
-   
+	    var number = document.getElementById('number');
+	  //story = document.getElementById('story')
+	   var btn = document.getElementById('subEstimate');
+	    //output = document.getElementById('output');
+
+
+	  btn.addEventListener('click', function(){
+	  console.log(number.value);
+	    socket.emit('showData', {
+	        number: number.value
+	    });
+	  }); 
 </script>
 </body>
 
