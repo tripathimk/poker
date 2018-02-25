@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>WebScockets 101</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-        <link href="/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        
-        <div id="admin">
-            <h2>Enter Scrum and user story details</h2>    
-            <input id="scrum" type="text" placeholder="Scrum Team" value="Sputnik"/>
-            <input id="story" type="text" placeholder="User Story" value="322" />
-            <button id="submit">Submit</button>
-        </div>
-        
-         <div id="link">
-                <div id="output"></div>
-            </div>
-
-    </body>
-    <script src="/createLink.js"></script>
+<head>
+<meta charset="utf-8">
+<title>WebScockets 101</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<link href="/styles.css" rel="stylesheet" />
+</head>
+<body>
+	<div id="admin">
+		<h2>Enter Scrum and user story details</h2>
+		<input id="scrum" type="text" placeholder="Scrum Team" value="Sputnik" />
+		<input id="story" type="text" placeholder="User Story" value="322" />
+		<button id="submit">Submit</button>
+	</div>
+	<div id="link">
+		<div id="output"></div>
+	</div>
+</body>
+<script src="/createLink.js"></script>
 </html>

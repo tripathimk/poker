@@ -8,52 +8,56 @@
 </head>
 <script src="/estimate.js"></script>
 <body>
+	<div id="scrum">
+		Scrum Name :
+		<div id="scrumLabel">...</div>
+	</div>
+	<div id="story">
+		User Story:
+		<div id="storyLabel">...</div>
+	</div>
+	<div id="Submitted">
+		User Story:
+		<div id="submitedBy">...</div>
+	</div>
+	<input id="number" type="text" placeholder="Enter Estimate" />
+	<button id="subEstimate">Submit</button>
 
-	<form>
-		<div id="scrum">
-			Scrum Name :
-			<div id="scrumLabel">...</div>
-		</div>
-		<div id="story">
-			User Story:
-			<div id="storyLabel">...</div>
-		</div>
-		<input id="number" type="text" placeholder="Enter Estimate" />
-		<button id="subEstimate">Submit</button>
-	</form>
 	<script>
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-  var scrum = getParameterByName('scrum');
-  var story = getParameterByName('story');
-   
-  var scrumLabel = document.getElementById('scrumLabel');
-  var storyLabel = document.getElementById('storyLabel');
-	    
-	    alert(scrum+story);
-	    
-	   scrumLabel.innerHTML += scrum;
-	    storyLabel.innerHTML += story;
-	    var number = document.getElementById('number');
-	  //story = document.getElementById('story')
-	   var btn = document.getElementById('subEstimate');
-	    //output = document.getElementById('output');
-
-
-	  btn.addEventListener('click', function(){
-	  console.log(number.value);
-	    socket.emit('showData', {
-	        number: number.value
-	    });
-	  }); 
-</script>
+	var socket = io.connect('http://localhost:4000');
+		function getParameterByName(name, url) {
+			if (!url)
+				url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
+					.exec(url);
+			if (!results)
+				return null;
+			if (!results[2])
+				return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		var scrum = getParameterByName('scrum');
+		var story = getParameterByName('story');
+		var scrumLabel = document.getElementById('scrumLabel');
+		var storyLabel = document.getElementById('storyLabel');
+		alert(scrum + story);
+		scrumLabel.innerHTML += scrum;
+		storyLabel.innerHTML += story;
+		var number = document.getElementById('number');
+		var submitedByLabel = document.getElementById('submitedBy');
+		var btn = document.getElementById('subEstimate');
+		btn.addEventListener('click', function() {
+			console.log(number.value);
+			socket.emit('showData', {
+				number : number.value
+			});
+		});
+		socket.on('estimate', function(data) {
+			console.log("caugh estimate");
+			alert(data.number);
+			submitedByLabel.innerHTML += data.number;			
+		});
+	</script>
 </body>
-
 </html>
