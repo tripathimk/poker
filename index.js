@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
         	{
         	var users=dataList[scrum];       	
         	users.push(data.member);  
-        //dataList[scrum]=users;
+        //dataList[scrum]=users; not required
         	}
         else
         	{
