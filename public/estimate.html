@@ -17,14 +17,16 @@
 		<div id="storyLabel">...</div>
 	</div>
 	<div id="Submitted">
-		User Story:
+		Submitted By:
 		<div id="submitedBy">...</div>
 	</div>
-	<input id="number" type="text" placeholder="Enter Estimate" />
+	<input id="member" type="text" placeholder="Enter Your Name"
+		value="Manoj" />
+	<input id="number" type="text" placeholder="Enter Estimate" value="3" />
 	<button id="subEstimate">Submit</button>
 
 	<script>
-	var socket = io.connect('http://localhost:4000');
+		var socket = io.connect('http://localhost:4000');
 		function getParameterByName(name, url) {
 			if (!url)
 				url = window.location.href;
@@ -41,22 +43,29 @@
 		var story = getParameterByName('story');
 		var scrumLabel = document.getElementById('scrumLabel');
 		var storyLabel = document.getElementById('storyLabel');
-		alert(scrum + story);
+		//alert(scrum + story);
 		scrumLabel.innerHTML += scrum;
 		storyLabel.innerHTML += story;
 		var number = document.getElementById('number');
+		var member = document.getElementById('member');
 		var submitedByLabel = document.getElementById('submitedBy');
 		var btn = document.getElementById('subEstimate');
 		btn.addEventListener('click', function() {
 			console.log(number.value);
 			socket.emit('showData', {
-				number : number.value
+				scrum : scrum,
+				story : story,
+				number : number.value,
+				member : member.value
 			});
 		});
 		socket.on('estimate', function(data) {
-			console.log("caugh estimate");
-			alert(data.number);
-			submitedByLabel.innerHTML += data.number;			
+			var scrumURL = getParameterByName('scrum');
+			var scrum = data.scrum;
+			var userList = data.dataList[scrumURL];
+			if (scrum == scrumURL) {
+				submitedByLabel.innerHTML = userList;
+			}
 		});
 	</script>
 </body>

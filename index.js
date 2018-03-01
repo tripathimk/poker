@@ -2,6 +2,8 @@ var express = require('express');
 var socket = require('socket.io');
 var path = require('path');
 
+var dataList={};
+
 // App setup
 var app = express();
 var server = app.listen(4000, function(){
@@ -14,17 +16,32 @@ app.use(express.static('public'));
 
 // Socket setup & pass server
 var io = socket(server);
+
 io.on('connection', (socket) => {
     console.log('made socket connection', socket.id);
     // Handle chat event
     socket.on('createLink', function(data){
          console.log(data);
-    io.sockets.emit('link', data);
-    	console.log("link emitted");
+         io.sockets.emit('link', data);
+         console.log("link emitted");
     });    
   socket.on('showData', function(data){
         console.log(data);
-   io.sockets.emit('estimate', data);
-   	console.log("estimate emitted");
+        console.log('users',users);
+        var scrum =data.scrum; 
+        if(scrum in dataList)
+        	{
+        	var users=dataList[scrum];       	
+        	users.push(data.member);  
+        //dataList[scrum]=users;
+        	}
+        else
+        	{
+        	var users=[];
+        	users.push(data.member);  
+         dataList[scrum]=users;      	
+        	}       
+        io.sockets.emit('estimate', {scrum,dataList});
+        console.log("estimate emitted");
    }); 
 });
