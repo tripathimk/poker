@@ -53,7 +53,6 @@ io.on('connection', (socket) => {
         		newUser["number"]=data.number;
 	         	users.push(newUser); 
         		}       
-        // dataList[scrum]=users; not required
         	}
         else
         	{

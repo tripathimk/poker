@@ -111,15 +111,14 @@
 			var scrumURL = getParameterByName('scrum');
 			var scrum = data.scrum;
 			var userList = data.dataList[scrumURL];
-			var memberList='';
-			var numberList='';
+			var memberList = '';
+			var numberList = '';
 			if (scrum == scrumURL) {
-				//submitedByLabel.innerHTML = userList;
-				for (var i = 0; i < userList.length; i++) {	
+				for (var i = 0; i < userList.length; i++) {
 					memberList += userList[i].member;
 					memberList = memberList + '\xa0\xa0\xa0';
 					numberList += userList[i].number;
-					numberList = numberList + '\xa0\xa0\xa0';					
+					numberList = numberList + '\xa0\xa0\xa0';
 				}
 				submitedByLabel.innerHTML = memberList;
 				userEstimateLabel.innerHTML = numberList;
