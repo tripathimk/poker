@@ -26,21 +26,45 @@ io.on('connection', (socket) => {
          console.log("link emitted");
     });    
   socket.on('showData', function(data){
-        console.log(data);
-        console.log('users',users);
+        console.log(data); 
         var scrum =data.scrum; 
         if(scrum in dataList)
         	{
-        	var users=dataList[scrum];       	
-        	users.push(data.member);  
-        //dataList[scrum]=users; not required
+        	var users=dataList[scrum]; 
+        	console.log('users',users);
+        	var recordExists = false;
+        	for (var i = 0; i < users.length; i++) {
+        		console.log('users[i]',users[i]);
+        		console.log('users[i].member',users[i]["member"]);
+				if(data.member == users[i]["member"])
+					{
+					console.log("existing user");
+					user = users[i];
+					user["number"]=data.number;
+					recordExists =true;
+					}
+			}
+        	console.log('recordExists:',recordExists);
+        	if(!recordExists)
+        		{
+        		console.log("new user");
+        		var newUser={};
+        		newUser["member"]=data.member;
+        		newUser["number"]=data.number;
+	         	users.push(newUser); 
+        		}       
+        // dataList[scrum]=users; not required
         	}
         else
         	{
         	var users=[];
-        	users.push(data.member);  
-         dataList[scrum]=users;      	
-        	}       
+        	var user={};
+        	user["member"]=data.member;
+        	user["number"]=data.number;
+        	users.push(user);  
+        dataList[scrum]=users;      	
+        	}  
+        console.log(dataList);
         io.sockets.emit('estimate', {scrum,dataList});
         console.log("estimate emitted");
    }); 

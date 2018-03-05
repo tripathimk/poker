@@ -5,6 +5,26 @@
 <title>Estimate</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<style>
+.cardbutton {
+	border: none;
+	outline: 0;
+	display: inline-block;
+	padding: 8px;
+	color: white;
+	background-color: DodgerBlue;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+	height: 250px;
+	width: 150px;
+}
+
+.cardbutton:hover, a:hover {
+	opacity: 0.7;
+}
+</style>
 </head>
 <script src="/estimate.js"></script>
 <body>
@@ -19,10 +39,21 @@
 	<div id="Submitted">
 		Submitted By:
 		<div id="submitedBy">...</div>
+		<div id="userEstimate">...</div>
 	</div>
 	<input id="member" type="text" placeholder="Enter Your Name"
 		value="Manoj" />
-	<input id="number" type="text" placeholder="Enter Estimate" value="3" />
+	<input id="number" type="hidden" />
+	<div id="cards">
+		<button class="cardbutton" value="1">1</button>
+		<button class="cardbutton" value="2">2</button>
+		<button class="cardbutton" value="3">3</button>
+		<button class="cardbutton" value="5">5</button>
+		<button class="cardbutton" value="8">8</button>
+		<button class="cardbutton" value="13">13</button>
+		<button class="cardbutton" value="21">21</button>
+	</div>
+
 	<button id="subEstimate">Submit</button>
 
 	<script>
@@ -39,19 +70,36 @@
 				return '';
 			return decodeURIComponent(results[2].replace(/\+/g, " "));
 		}
+
 		var scrum = getParameterByName('scrum');
 		var story = getParameterByName('story');
 		var scrumLabel = document.getElementById('scrumLabel');
 		var storyLabel = document.getElementById('storyLabel');
-		//alert(scrum + story);
+		alert(scrum + story);
 		scrumLabel.innerHTML += scrum;
 		storyLabel.innerHTML += story;
-		var number = document.getElementById('number');
 		var member = document.getElementById('member');
+		var number = document.getElementById('number');
+
+		var classname = document.getElementsByClassName("cardbutton");
+
+		var getNumber = function() {
+			var attribute = this.getAttribute("value");
+			number.value = attribute;
+			alert(number.value);
+		};
+
+		for (var i = 0; i < classname.length; i++) {
+			classname[i].addEventListener('click', getNumber, false);
+		}
+
 		var submitedByLabel = document.getElementById('submitedBy');
+		var userEstimateLabel = document.getElementById('userEstimate');
+
 		var btn = document.getElementById('subEstimate');
 		btn.addEventListener('click', function() {
 			console.log(number.value);
+			btn.disabled = true;
 			socket.emit('showData', {
 				scrum : scrum,
 				story : story,
@@ -63,11 +111,20 @@
 			var scrumURL = getParameterByName('scrum');
 			var scrum = data.scrum;
 			var userList = data.dataList[scrumURL];
+			var memberList='';
+			var numberList='';
 			if (scrum == scrumURL) {
-				submitedByLabel.innerHTML = userList;
+				//submitedByLabel.innerHTML = userList;
+				for (var i = 0; i < userList.length; i++) {	
+					memberList += userList[i].member;
+					memberList = memberList + '\xa0\xa0\xa0';
+					numberList += userList[i].number;
+					numberList = numberList + '\xa0\xa0\xa0';					
+				}
+				submitedByLabel.innerHTML = memberList;
+				userEstimateLabel.innerHTML = numberList;
 			}
 		});
-		
 	</script>
 </body>
 </html>
