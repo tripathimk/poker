@@ -20,6 +20,9 @@
 	height: 250px;
 	width: 150px;
 }
+.showName {
+width: 150px;
+}
 
 .cardbutton:hover, a:hover {
 	opacity: 0.7;
@@ -38,6 +41,7 @@
 	</div>
 	<div id="Submitted">
 		Submitted By:
+		<div id="submittedCards">...</div>
 		<div id="submitedBy">...</div>
 		<div id="userEstimate">...</div>
 	</div>
@@ -56,6 +60,7 @@
 
 	<button id="subEstimate">Submit</button>
 
+	<button id="show">Show Estimates</button>
 	<script>
 		var socket = io.connect('http://localhost:4000');
 		function getParameterByName(name, url) {
@@ -94,6 +99,7 @@
 		}
 
 		var submitedByLabel = document.getElementById('submitedBy');
+		var submittedCardsLabel = document.getElementById('submittedCards');
 		var userEstimateLabel = document.getElementById('userEstimate');
 
 		var btn = document.getElementById('subEstimate');
@@ -113,17 +119,26 @@
 			var userList = data.dataList[scrumURL];
 			var memberList = '';
 			var numberList = '';
+			var showMember = '';
 			if (scrum == scrumURL) {
 				for (var i = 0; i < userList.length; i++) {
+					showMember +='<button class="cardbutton"></button> ';
 					memberList += userList[i].member;
-					memberList = memberList + '\xa0\xa0\xa0';
+					memberList = memberList + '      ';
 					numberList += userList[i].number;
 					numberList = numberList + '\xa0\xa0\xa0';
 				}
+				alert(showMember);
 				submitedByLabel.innerHTML = memberList;
-				userEstimateLabel.innerHTML = numberList;
+				submittedCardsLabel.innerHTML =showMember;
+				//userEstimateLabel.innerHTML = numberList;
 			}
 		});
+		
+		
+		
+		
+		
 	</script>
 </body>
 </html>
