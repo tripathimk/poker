@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <!--<link rel="stylesheet" type="text/css" href="./session.css" />
+  --><head>
+  <style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+    margin:0 auto;
+    display:block;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.signupbtn {
+    text-align: center;
+}
+
+/* Add padding to container elements */
+
+#container{
+    width:100%;
+    border:1px solid #ccc
+    }
+#left{float:left;width:60%;}
+#right{float:right;width:40%;}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}  
+
+h1{
+  text-align: center;
+}
+
+table {
+    width:100%;
+    margin-top: 2.5%;
+}
+table, th, td {
+    border: 0px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.scrollable{
+  height: 450px;
+  overflow: scroll;
+}
+
+  </style>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+   <script>
+        function createTable(){
+            $('#showCards').hide();
+            $('#showPoints').css('display', 'inline-block');
+            mytable = $('<table></table>').attr({ id: "basicTable" });
+            var rows = new Number($("#rowcount").val());
+            var cols = new Number($("#columncount").val());
+            var tr = [];
+            for (var i = 0; i < 5; i++) {
+                var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(mytable);
+                for (var j = 0; j < 4; j++) {
+                    $('<td></td>').append(
+                        "<div class='card bg-info text-white' style='width:150px;height:200px'><div class='card-body'><h4 class='card-title'>Card title</h4><p class='card-text'>Manoj</p></div></div>").appendTo(row); 
+
+                }
+                          
+            }
+            console.log("TTTTT:"+mytable.html());
+            mytable.appendTo("#showPoints");	       
+          
+        }
+        </script>
+</head>
+  <body>
+    <div id="container">  
+            <h1>Estimate now</h1>
+            <p style="margin-left: 10%;">Please select a number from left side and submit vote button</p>
+                      
+        <form action="/" style="border:1px solid #ccc">
+            <div id="left">
+            <div id="showPoints" class="scrollable" style="display: none;"></div>
+                <div id="showCards">
+                    <table>
+                        <tr>
+                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">1</div>
+                                  </div></th>
+                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">2</div>
+                                  </div></th> 
+                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">3</div>
+                                  </div></th>
+                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">5</div>
+                                  </div></th>
+                              
+                            </tr>
+                            <tr>
+                              <td><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">8</div>
+                                  </div></td>
+                              <td><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">13</div>
+                                  </div></td>
+                              <td><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">21</div>
+                                  </div></td>
+                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body">34</div>
+                                  </div></th>                       
+                            </tr>
+                          </table>   
+                        <br>
+                        <p style="text-align: center;">Looking for more numbers, it's time to break user story</p> 
+                </div>
+                </div>
+            <div id="right">
+                <hr>
+
+                <label for="count"><b>Total number of peple joined</b></label>
+                <input type="text" value="4" name="count" readonly>
+
+                <label for="scrum"><b>Scrum Name</b></label>
+                <input type="text" value="Scrum XYZ" name="scrum" readonly>
+
+                <label for="story"><b>User Story</b></label>
+                <input type="text" value="Story ABC" name="story" readonly>
+
+                <label for="member"><b>Team Member</b></label>
+                <input type="text" value="TM Name" name="member" readonly>
+                
+                
+                <div class="clearfix">
+                <button type="button" class="signupbtn" onclick="createTable();" >Vote</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

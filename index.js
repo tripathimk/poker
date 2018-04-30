@@ -12,6 +12,9 @@ var server = app.listen(4000, function(){
 
 // Static files
 app.use(express.static('public'));
+app.use(express.static('public/css'));
+app.use(express.static('public/html'));
+app.use(express.static('public/js'));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // Socket setup & pass server
