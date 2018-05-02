@@ -10,8 +10,8 @@
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
+    padding: 5px;
+    margin: 5px 0 15px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
@@ -24,7 +24,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 hr {
     border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 /* Set a style for all buttons */
@@ -107,35 +107,15 @@ th, td {
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-   <script>
-        function createTable(){
-            $('#showCards').hide();
-            $('#showPoints').css('display', 'inline-block');
-            mytable = $('<table></table>').attr({ id: "basicTable" });
-            var rows = new Number($("#rowcount").val());
-            var cols = new Number($("#columncount").val());
-            var tr = [];
-            for (var i = 0; i < 5; i++) {
-                var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(mytable);
-                for (var j = 0; j < 4; j++) {
-                    $('<td></td>').append(
-                        "<div class='card bg-info text-white' style='width:150px;height:200px'><div class='card-body'><h4 class='card-title'>Card title</h4><p class='card-text'>Manoj</p></div></div>").appendTo(row); 
-
-                }
-                          
-            }
-            console.log("TTTTT:"+mytable.html());
-            mytable.appendTo("#showPoints");	       
-          
-        }
-        </script>
+   <script
+src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="showCards.js"></script>
 </head>
   <body>
     <div id="container">  
             <h1>Estimate now</h1>
-            <p style="margin-left: 10%;">Please select a number from left side and submit vote button</p>
-                      
+            <p style="margin-left: 10%;">Please select a number from left side and submit vote button</p>                     
         <form action="/" style="border:1px solid #ccc">
             <div id="left">
             <div id="showPoints" class="scrollable" style="display: none;"></div>
@@ -153,8 +133,7 @@ th, td {
                                   </div></th>
                               <th><div class="card bg-info text-white" style="width:150px;height:200px">
                                     <div class="card-body">5</div>
-                                  </div></th>
-                              
+                                  </div></th>                             
                             </tr>
                             <tr>
                               <td><div class="card bg-info text-white" style="width:150px;height:200px">
@@ -176,21 +155,31 @@ th, td {
                 </div>
                 </div>
             <div id="right">
+                    <script>
+                            $( document ).ready(function() {
+                            $("#count").val($.urlParam('id'));
+                            $("#scrum").val($.urlParam('scrum'));
+                            $("#story").val($.urlParam('story'));
+                            $("#member").val($.urlParam('name'));
+                            $("#url").val(window.location.href);
+                            });
+                    </script>
                 <hr>
-
                 <label for="count"><b>Total number of peple joined</b></label>
-                <input type="text" value="4" name="count" readonly>
+                <input id="count" ype="text" value="" name="count" readonly>
 
                 <label for="scrum"><b>Scrum Name</b></label>
-                <input type="text" value="Scrum XYZ" name="scrum" readonly>
+                <input id="scrum" type="text" value="" name="scrum" readonly>
 
                 <label for="story"><b>User Story</b></label>
-                <input type="text" value="Story ABC" name="story" readonly>
+                <input id="story" type="text" value="" name="story" readonly>
 
                 <label for="member"><b>Team Member</b></label>
-                <input type="text" value="TM Name" name="member" readonly>
-                
-                
+                <input id="member" type="text" value="" name="member" readonly>
+
+                <label for="url"><b>URL to share</b></label>
+                <input id="url" type="text" value="" name="url" readonly>  
+
                 <div class="clearfix">
                 <button type="button" class="signupbtn" onclick="createTable();" >Vote</button>
                 </div>
@@ -198,5 +187,6 @@ th, td {
         </form>
     </div>
 </body>
+<script src="showCards.js"></script>
 </html>
 

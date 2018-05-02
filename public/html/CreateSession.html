@@ -83,6 +83,7 @@ h1{
   </style>
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
   <body>
 <form action="/" style="border:1px solid #ccc">
@@ -92,13 +93,13 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
     <hr>
 
     <label for="scrum"><b>Scrum Name</b></label>
-    <input type="text" placeholder="Enter scrum name" name="scrum" required>
+    <input id="scrum"  type="text" placeholder="Enter scrum name" name="scrum" required>
 
     <label for="story"><b>User Story</b></label>
-    <input type="text" placeholder="Enter user story" name="story" required>
+    <input id ="story" type="text" placeholder="Enter user story" name="story" required>
 
     <label for="admin"><b>Scrum Master</b></label>
-    <input type="text" placeholder="Enter name" name="admin" required>
+    <input id ="admin" type="text" placeholder="Enter name" name="admin" required>
     
     
     <div class="clearfix">
