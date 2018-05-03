@@ -157,16 +157,21 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
             <div id="right">
                     <script>
                             $( document ).ready(function() {
-                            $("#count").val($.urlParam('id'));
+                            $("#id").val($.urlParam('id'));
                             $("#scrum").val($.urlParam('scrum'));
                             $("#story").val($.urlParam('story'));
                             $("#member").val($.urlParam('name'));
-                            $("#url").val(window.location.href);
+                            $("#count").val($.urlParam('count'));
+                            $("#url").val("localhost:4001/CreateSession.html?id="+$.urlParam('id')
+                            +"&scrum="+$.urlParam('scrum')+"&story="+$.urlParam('story'));
+                           // +"&count="+$.urlParam('count'));
                             });
                     </script>
                 <hr>
+                <input id="id" type="hidden" value="" name="id" readonly>
+
                 <label for="count"><b>Total number of peple joined</b></label>
-                <input id="count" ype="text" value="" name="count" readonly>
+                <input id="count" type="text" value="" name="count" readonly>
 
                 <label for="scrum"><b>Scrum Name</b></label>
                 <input id="scrum" type="text" value="" name="scrum" readonly>
@@ -188,5 +193,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
     </div>
 </body>
 <script src="showCards.js"></script>
+<script src="createSession.js"></script>
 </html>
 

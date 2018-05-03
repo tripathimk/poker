@@ -81,31 +81,42 @@ h1{
   text-align: center;
 }
   </style>
+ <script
+ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
   <body>
 <form action="/" style="border:1px solid #ccc">
   <div class="container">
     <h1>Start planning session</h1>
     <p>Please fill in this form to create a new planning session.</p>
+    <script>
+            $( document ).ready(function() {
+                $("#id").val($.urlParam('id'));
+                $("#scrum").val($.urlParam('scrum'));
+                $("#story").val($.urlParam('story'));
+            });
+    </script>
     <hr>
+    <input id="id" type="hidden" value="" name="id" readonly>
 
     <label for="scrum"><b>Scrum Name</b></label>
-    <input type="text" value="Scrum XYZ" name="scrum" readonly>
+    <input id="scrum"  type="text" value="Scrum XYZ" name="scrum" readonly>
 
     <label for="story"><b>User Story</b></label>
-    <input type="text" value="Story ABC" name="story" readonly>
+    <input id="story" type="text" value="Story ABC" name="story" readonly>
 
     <label for="member"><b>Team Member</b></label>
-    <input type="text" placeholder="Enter name" name="member" required>
+    <input id="member" type="text" placeholder="Enter name" name="member" required>
     
     
     <div class="clearfix">
       <button type="reset" class="cancelbtn">Reset</button>
-      <button type="submit" class="signupbtn">Join Session</button>
+      <button id="submit" type="submit" class="signupbtn">Join Session</button>
     </div>
   </div>
 </form>
-
 </body>
+<script src="showCards.js"></script>
 </html>
 

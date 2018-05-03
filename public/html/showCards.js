@@ -1,5 +1,8 @@
 // Make connection
 var socket = io.connect('http://localhost:4001');
+
+
+//Get value of query param
 $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results==null){
@@ -8,7 +11,7 @@ $.urlParam = function(name){
     else{
        return decodeURI(results[1]) || 0;
     }
-}
+};
 
 function createTable(){
     $('#showCards').hide();

@@ -90,7 +90,33 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
   <div class="container">
     <h1>Start planning session</h1>
     <p>Please fill in this form to create a new planning session.</p>
+    <script>
+            $( document ).ready(function() {
+               // $("#joinButton").hide();
+
+                alert($.urlParam('count'));
+
+                if($.urlParam('id'))
+                {
+                   // $("#createButton").hide();
+                    //$("#joinButton").show();
+                    $("#id").val($.urlParam('id'));
+                   // $("#count").val($.urlParam('count')+1);
+                    $("#scrum").val($.urlParam('scrum'));
+                    $("#story").val($.urlParam('story'));
+                }
+                else{
+                    $("#id").val(Math.floor(Math.random()*10000));
+                   // $("#count").val(0);
+                }
+                
+            });
+    </script>
+
     <hr>
+
+    <input id="id" type="hidden" value="" name="id" readonly>
+   <!-- <input id="count" type="hidden" value="" name="count" readonly> -->
 
     <label for="scrum"><b>Scrum Name</b></label>
     <input id="scrum"  type="text" placeholder="Enter scrum name" name="scrum" required>
@@ -98,13 +124,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
     <label for="story"><b>User Story</b></label>
     <input id ="story" type="text" placeholder="Enter user story" name="story" required>
 
-    <label for="admin"><b>Scrum Master</b></label>
-    <input id ="admin" type="text" placeholder="Enter name" name="admin" required>
+    <label for="member"><b>Scrum Master</b></label>
+    <input id ="member" type="text" placeholder="Enter name" name="member" required>
     
     
     <div class="clearfix">
       <button type="reset" class="cancelbtn">Reset</button>
-      <button id="submit" type="submit" class="signupbtn">Start Session</button>
+      <button id="createButton" type="button" class="signupbtn">Start Session</button>
+      <!--<button id="joinButton" type="button" class="signupbtn">Join Session</button>-->
     </div>
   </div>
 </form>
