@@ -116,7 +116,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
     <div id="container">  
             <h1>Estimate now</h1>
             <p style="margin-left: 10%;">Please select a number from left side and submit vote button</p>                     
-        <form action="/" style="border:1px solid #ccc">
+
             <div id="left">
             <div id="showPoints" class="scrollable" style="display: none;"></div>
                 <div id="showCards">
@@ -157,12 +157,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
             <div id="right">
                     <script>
                             $( document ).ready(function() {
+                            alert('test');
                             $("#id").val($.urlParam('id'));
                             $("#scrum").val($.urlParam('scrum'));
                             $("#story").val($.urlParam('story'));
-                            $("#member").val($.urlParam('name'));
-                            $("#count").val($.urlParam('count'));
-                            $("#url").val("localhost:4001/CreateSession.html?id="+$.urlParam('id')
+                            $("#url").val("localhost:4001/ShowCards.html?id="+$.urlParam('id')
                             +"&scrum="+$.urlParam('scrum')+"&story="+$.urlParam('story'));
                            // +"&count="+$.urlParam('count'));
                             });
@@ -180,19 +179,18 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
                 <input id="story" type="text" value="" name="story" readonly>
 
                 <label for="member"><b>Team Member</b></label>
-                <input id="member" type="text" value="" name="member" readonly>
+                <input id="member" type="text" value="" name="member" >
 
                 <label for="url"><b>URL to share</b></label>
                 <input id="url" type="text" value="" name="url" readonly>  
 
                 <div class="clearfix">
-                <button type="button" class="signupbtn" onclick="createTable();" >Vote</button>
+                <button id="submit" class="signupbtn" onclick="createTable();" >Vote</button>
                 </div>
             </div>
-        </form>
+  
     </div>
 </body>
 <script src="showCards.js"></script>
-<script src="createSession.js"></script>
 </html>
 

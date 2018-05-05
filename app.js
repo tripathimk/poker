@@ -20,9 +20,23 @@ app.use(express.static('public/js'));
 var io = socket(server);
 
 var count = 0;
+function getConnectedList ()
+{
+    let list = []
+
+    for ( let client in io.sockets.connected )
+    {
+        list.push(client)
+    }
+
+    return list
+}
+
+
 
 io.on('connection', (socket) => {
-    console.log('made socket connection', socket.id);
+    console.log('made socket connection-->');
+    console.log( getConnectedList() );
     //Event Listener for First Session creation
     socket.on('createSession', function(data){
         console.log("Session Creation request "+data.session.iteration.count);
@@ -32,8 +46,8 @@ io.on('connection', (socket) => {
         io.sockets.emit('openSession', data);
     }); 
     //Event Listener for Join Session 
-    /*socket.on('joinSession', function(data){
-        console.log("Session join reques");
-        io.sockets.emit('addUser', data);
-    });*/
+    socket.on('submitEstimate', function(data){
+        console.log("Caught submit estimate event");
+        io.sockets.emit('showEstimate', data);
+    });
 });

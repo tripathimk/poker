@@ -20,8 +20,21 @@ app.use(express.static('public/js'));
 // Socket setup & pass server
 var io = socket(server);
 
+function getConnectedList ()
+{
+    let list = []
+
+    for ( let client in io.sockets.connected )
+    {
+        list.push(client)
+    }
+
+    return list
+}
+
 io.on('connection', (socket) => {
-    console.log('made socket connection', socket.id);
+	console.log('made socket connection-->');
+    console.log( getConnectedList() );
     // Handle chat event
     socket.on('createLink', function(data){
          console.log(data);

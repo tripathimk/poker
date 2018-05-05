@@ -13,7 +13,7 @@ function url_redirect(options){
     $("body").append($form);
     $form.submit();
 }
-
+jQuery(document).ready(function(){
 var btn = document.getElementById('createButton');
 btn.addEventListener('click', function() {
     console.log('Event Triggered');
@@ -37,6 +37,7 @@ btn.addEventListener('click', function() {
         }
     });
 });
+})
 
 // Listen for events
 socket.on('openSession', function(data) {
