@@ -14,12 +14,11 @@ $.urlParam = function(name){
 };
 
 
-jQuery(document).ready(function(){
-    var btn = document.getElementById('submit');
-    btn.addEventListener('click', function() {
-        console.log('estimate Event Triggered');
-        alert('Click button triggered');
-        //console.log(story.value);
+
+
+$(document).ready(function(){
+        $('#estmtBtn').click(function() {
+        alert('Vote Click button triggered');
         socket.emit('submitEstimate', {
             session:{
                 scrum : $('#scrum').val(),
@@ -31,27 +30,26 @@ jQuery(document).ready(function(){
                     member: {
                         name:$('#member').val(),
                         role: "SM",
-                        status: "progress",
-                        point: "0"
+                        status: "complete",
+                        point: $('#number').val()
                     }
                 }
             }
-        });
-    });
+        })
     })
-
-    
-    socket.on('showEstimate', function(data) {
-        alert('Inside Open Session'+data.session.story+' '+data.session.iteration.member.name);
-        createTable();
-        console.log("showEstimate event caught");   
-    });
+});
 
 
+socket.on('showEstimate', function(data) {
+    alert('Inside Open Session'+data.session.story+' '+data.session.iteration.member.name);
+    createTable();
+    console.log("showEstimate event caught");   
+});
 
 
+
+//Function to display list of users who have submitted estimate
 function createTable(){
-    alert('submitted estimate');
     $('#showCards').hide();
     $('#showPoints').css('display', 'inline-block');
     mytable = $('<table></table>').attr({ id: "basicTable" });
@@ -68,3 +66,17 @@ function createTable(){
     console.log("TTTTT:"+mytable.html());
     mytable.appendTo("#showPoints");	                
 }
+
+
+//Function to get number when click on cards
+
+$(document).ready(function(){
+    $(".card-body").each( function() 
+    {
+        $(this).click(function() {
+            var attribute = this.getAttribute("value");
+            number.value = attribute;
+            alert(number.value);
+        })
+    })
+});

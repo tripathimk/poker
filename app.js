@@ -48,6 +48,8 @@ io.on('connection', (socket) => {
     //Event Listener for Join Session 
     socket.on('submitEstimate', function(data){
         console.log("Caught submit estimate event");
+        console.log("Name:"+ data.session.iteration.member.name);
+        console.log("Estimate:"+data.session.iteration.member.point);
         io.sockets.emit('showEstimate', data);
     });
 });

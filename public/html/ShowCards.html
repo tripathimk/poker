@@ -122,32 +122,32 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
                 <div id="showCards">
                     <table>
                         <tr>
-                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">1</div>
-                                  </div></th>
-                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">2</div>
-                                  </div></th> 
-                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">3</div>
-                                  </div></th>
-                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">5</div>
-                                  </div></th>                             
+                              <th><a href="#" class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="1">1</div>
+                                </a></th>
+                              <th><a href="#"  class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="2">2</div>
+                              </a></th> 
+                              <th><a href="#" class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="3">3</div>
+                              </a></th>
+                              <th><a href="#"  class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="5">5</div>
+                              </a></th>                             
                             </tr>
                             <tr>
-                              <td><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">8</div>
-                                  </div></td>
-                              <td><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">13</div>
-                                  </div></td>
-                              <td><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">21</div>
-                                  </div></td>
-                              <th><div class="card bg-info text-white" style="width:150px;height:200px">
-                                    <div class="card-body">34</div>
-                                  </div></th>                       
+                              <td><a href="#"  class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="8">8</div>
+                              </a></td>
+                              <td><a href="#"  class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="13">13</div>
+                              </a></td>
+                              <td><a href="#"  class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="21">21</div>
+                              </a></td>
+                              <th><a href="#"  class="card bg-info text-white" style="width:150px;height:200px">
+                                    <div class="card-body" value="34">34</div>
+                              </a></th>                       
                             </tr>
                           </table>   
                         <br>
@@ -168,6 +168,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
                     </script>
                 <hr>
                 <input id="id" type="hidden" value="" name="id" readonly>
+                <input id="number" type="hidden" value="" name="number" readonly>
 
                 <label for="count"><b>Total number of peple joined</b></label>
                 <input id="count" type="text" value="" name="count" readonly>
@@ -185,12 +186,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></scri
                 <input id="url" type="text" value="" name="url" readonly>  
 
                 <div class="clearfix">
-                <button id="submit" class="signupbtn" onclick="createTable();" >Vote</button>
+                <button id="estmtBtn" class="signupbtn">Vote</button>
                 </div>
             </div>
   
     </div>
 </body>
-<script src="showCards.js"></script>
 </html>
 
