@@ -20,31 +20,60 @@ btn.addEventListener('click', function() {
     alert('button clicked');
 	//console.log(story.value);
     socket.emit('createSession', {
-        session:{
+        "sessions" : 
+        [
+          {
+            "id" : $('#id').val(), 
+            "scrum" : $('#scrum').val() ,
+            "story" : $('#story').val(),
+            "status" : "progress",
+            "iterations" :
+            [
+             { 
+               "id": 1,
+               "count": 0, 
+               "status": "progress",
+               "members" :
+               [
+                 { 
+                   "name":$('#member').val(),
+                   "role": "SM",
+                   "status": "progress",
+                   "point": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]}
+    )}
+)});
+
+        
+       /* session:{
+            id : $('#id').val(),
             scrum : $('#scrum').val(),
             story : $('#story').val(),
             status : "progress",
             iteration: {
-                id : $('#id').val(),
+                id: 1,
                 count: 0,
+                status: "progress",
                 member: {
                     name:$('#member').val(),
                     role: "SM",
                     status: "progress",
-                    point: "0"
+                    point: 0
                 }
             }
-        }
-    });
-});
-})
+        }*/
+
 
 // Listen for events
 socket.on('openSession', function(data) {
-    alert('Inside Open Session'+data.session.story+' '+data.session.iteration.count);
-    window.location.href = 'http://localhost:4001/ShowCards.html?id='+ data.session.iteration.id+
-    '&scrum=' + data.session.scrum + '&story=' + data.session.story +'&name=' + 
-    data.session.iteration.member.name + '&count=' + data.session.iteration.count;  
+    alert('Inside Open Session'+data.sessions[0].story+' '+data.sessions[0].iterations[0].count);
+    window.location.href = 'http://localhost:4001/ShowCards.html?id='+ data.sessions[0].id+
+    '&scrum=' + data.sessions[0].scrum + '&story=' + data.sessions[0].story;  
     /*url_redirect({url: "/ShowCards/html",
                   method: "post",
                   data: {"scrum":data.scrum}

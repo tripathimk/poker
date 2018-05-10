@@ -1,0 +1,66 @@
+ session:{
+    id : $('#id').val(),
+    scrum : $('#scrum').val(),
+    story : $('#story').val(),
+    status : "progress",
+    iteration: {
+        id: 1,
+        count: 0,
+        status: "progress",
+        member: {
+            name:$('#member').val(),
+            role: "SM",
+            status: "progress",
+            point: 0
+        }
+    }
+};
+
+{
+    "sessions" : [
+        {
+            "id" : $('#id').val(), "scrum" : $('#scrum').val() ,"story" : $('#story').val(),"status" : "progress",
+            "iterations" :
+            [
+                 { "id": 1, "count": 0, "status": "progress", "members" :[
+                    { "name":$('#member').val(),"role": "SM","status": "progress","point": 0}]
+                }
+            ]
+        }
+    ]    
+}
+
+
+
+{
+    "sessions" : [
+        {
+            "id" : 1, "scrum" : "scrum1" ,"story" : "story1","status" : "progress",
+            "iterations" :
+            [
+                 { "id": 1, "count": 0, "status": "progress", "members" :[
+                    { "name":"manoj","role": "SM","status": "progress","point": 0},
+                    { "name":"atharva","role": "SM","status": "progress","point": 0}]
+                },
+                 { "id": 2, "count": 0, "status": "progress", "members" :[
+                     { "name":"manoj","role": "SM","status": "progress","point": 0},
+                    { "name":"atharva","role": "SM","status": "progress","point": 0}]
+                }
+            ]
+        },
+        {
+            "id" : 2, "scrum" : "scrum2" ,"story" : "story2","status" : "progress",
+            "iterations" :
+            [
+                 { "id": 1, "count": 0, "status": "progress", "members" :[
+                    { "name":"manoj","role": "SM","status": "progress","point": 0},
+                    { "name":"atharva","role": "SM","status": "progress","point": 0}]
+                },
+                 { "id": 2, "count": 0, "status": "progress", "members" :[
+                     { "name":"manoj","role": "SM","status": "progress","point": 0},
+                    { "name":"atharva","role": "SM","status": "progress","point": 0}]
+                }
+            ]
+        }
+    ]    
+}

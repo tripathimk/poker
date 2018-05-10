@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get a new array with the full name of each person in the array.</p>
+<button onclick="myFunction()">Try it</button>
+
+<button onclick="getData()">Get Session</button>
+
+<p>Session: <span id="session"></span></p>
+
+<script>
+  var data =  {
+    "sessions" : 
+    [
+      {
+        "id" : 1, 
+        "scrum" : "MyScrum" ,
+        "story" : "MyStory",
+        "status" : "progress",
+        "iterations" :
+        [
+         { 
+           "id": 1,
+           "count": 0, 
+           "status": "progress",
+           "members" :
+           [
+             { 
+               "name":"MyName",
+               "role": "SM",
+               "status": "progress",
+               "point": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id" : 2, 
+        "scrum" : "MyScrum2" ,
+        "story" : "MyStory2",
+        "status" : "progress",
+        "iterations" :
+        [
+         { 
+           "id": 2,
+           "count": 2, 
+           "status": "progress",
+           "members" :
+           [
+             { 
+               "name":"MyName2",
+               "role": "DM",
+               "status": "progress",
+               "point": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+    
+    };
+
+  var myJson = JSON.stringify(data);
+  var json = JSON.parse(myJson);	
+  alert(json);
+  var mySession;
+  for (var i = 0; i < json.sessions.length; i++) 
+  {  
+      if(json.sessions[i].id == 1)
+      {
+         mySession = json.sessions[i];
+      }
+      else
+      {
+        mySession = json.sessions[i];
+      }
+      alert(mySession.id);
+  }
+	
+			
+</script>	
+
+</body>
+</html>

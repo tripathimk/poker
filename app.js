@@ -19,7 +19,11 @@ app.use(express.static('public/js'));
 // Socket setup & pass server
 var io = socket(server);
 
+//Declare global variable
+var globalList={};
 var count = 0;
+
+
 function getConnectedList ()
 {
     let list = []
@@ -39,17 +43,39 @@ io.on('connection', (socket) => {
     console.log( getConnectedList() );
     //Event Listener for First Session creation
     socket.on('createSession', function(data){
-        console.log("Session Creation request "+data.session.iteration.count);
-        data.session.iteration.count = count + 1;
-        count = data.session.iteration.count;
-        console.log("count "+ count);
+        console.log("Session Creation request ");
+       // data.session.iteration.count = count + 1;
+       // count = data.session.iteration.count;
+        //console.log("count "+ count);
         io.sockets.emit('openSession', data);
     }); 
     //Event Listener for Join Session 
     socket.on('submitEstimate', function(data){
         console.log("Caught submit estimate event");
-        console.log("Name:"+ data.session.iteration.member.name);
-        console.log("Estimate:"+data.session.iteration.member.point);
+        //console.log("Name:"+ data.session.iteration.member.name);
+       // console.log("Estimate:"+data.session.iteration.member.point);
         io.sockets.emit('showEstimate', data);
     });
 });
+
+//JSOn manuplation -->Add data to global variable
+
+function addDatatoList(data)
+{
+    if(data in globalList.data.session.id)
+    {
+        if(data.session.iteration.id in globalList.data.session.iteration.id)
+        {
+
+        }
+        else{
+            
+        }
+
+    }
+    else{
+        globalList.data.session.id =data;
+    }
+    
+
+}
