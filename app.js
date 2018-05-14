@@ -20,7 +20,7 @@ app.use(express.static('public/js'));
 var io = socket(server);
 
 //Declare global variable
-var globalList={};
+var globalData;
 var count = 0;
 
 
@@ -32,8 +32,7 @@ function getConnectedList ()
     {
         list.push(client)
     }
-
-    return list
+    return list;
 }
 
 
@@ -44,6 +43,7 @@ io.on('connection', (socket) => {
     //Event Listener for First Session creation
     socket.on('createSession', function(data){
         console.log("Session Creation request ");
+        addSessionDatatoList(data);
        // data.session.iteration.count = count + 1;
        // count = data.session.iteration.count;
         //console.log("count "+ count);
@@ -52,30 +52,57 @@ io.on('connection', (socket) => {
     //Event Listener for Join Session 
     socket.on('submitEstimate', function(data){
         console.log("Caught submit estimate event");
+        addMemberDatatoList(data);
         //console.log("Name:"+ data.session.iteration.member.name);
        // console.log("Estimate:"+data.session.iteration.member.point);
-        io.sockets.emit('showEstimate', data);
+        io.sockets.emit('showEstimate', globalData);
     });
 });
 
 //JSOn manuplation -->Add data to global variable
 
-function addDatatoList(data)
+//add data of newly created sessions on same socket
+function addSessionDatatoList(data)
 {
-    if(data in globalList.data.session.id)
+    var isNewSession = true;
+    //first netry in global data
+    if (typeof globalData == "undefined" || globalData == null) 
     {
-        if(data.session.iteration.id in globalList.data.session.iteration.id)
+        console.log('inside if global data is null');
+        globalData = data;
+    }
+    else 
+    {
+        console.log('inside else');
+        for (var i = 0; i < globalData.sessions.length; i++)
         {
-
+            if(globalData.sessions[i].id == data.sessions[0].id)
+            {
+                console.log('Existing session');
+                //globalData.sessions[i].iterations[0].members.push(data.sessions[0].iterations[0].members[0]);
+                isNewSession = false;
+            }
         }
-        else{
-            
+        if(isNewSession)
+        {
+            console.log('new session');
+            globalData.sessions.push(data.sessions[0]);
         }
-
     }
-    else{
-        globalList.data.session.id =data;
-    }
-    
+    console.log('global data-->'+globalData);
+}
 
+//add data of newly joined member in exiting session
+function addMemberDatatoList(data)
+{   
+    console.log('initial Member count-->'+data.sessions[0].iterations[0].members.length);
+    for (var i = 0; i < globalData.sessions.length; i++)
+    {
+        if(globalData.sessions[i].id == data.sessions[0].id)
+        {
+            console.log('session id found:'+ data.sessions[0].id);
+            globalData.sessions[i].iterations[0].members.push(data.sessions[0].iterations[0].members[0]);
+            console.log('final member count :' +globalData.sessions[i].iterations[0].members.length);
+        }
+    }     
 }

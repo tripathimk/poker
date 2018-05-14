@@ -17,7 +17,7 @@ jQuery(document).ready(function(){
 var btn = document.getElementById('createButton');
 btn.addEventListener('click', function() {
     console.log('Event Triggered');
-    alert('button clicked');
+    //alert('button clicked');
 	//console.log(story.value);
     socket.emit('createSession', {
         "sessions" : 
@@ -35,12 +35,12 @@ btn.addEventListener('click', function() {
                "status": "progress",
                "members" :
                [
-                 { 
+                 /*{ 
                    "name":$('#member').val(),
                    "role": "SM",
                    "status": "progress",
                    "point": 0
-                  }
+                  }*/
                 ]
               }
             ]
@@ -71,7 +71,7 @@ btn.addEventListener('click', function() {
 
 // Listen for events
 socket.on('openSession', function(data) {
-    alert('Inside Open Session'+data.sessions[0].story+' '+data.sessions[0].iterations[0].count);
+    //alert('Inside Open Session'+data.sessions[0].story+' '+data.sessions[0].iterations[0].count);
     window.location.href = 'http://localhost:4001/ShowCards.html?id='+ data.sessions[0].id+
     '&scrum=' + data.sessions[0].scrum + '&story=' + data.sessions[0].story;  
     /*url_redirect({url: "/ShowCards/html",
